@@ -12,6 +12,75 @@ const Cart = require('../models/cart');
 const { isAuthenticated } = require('../helpers/auth');
 
 
+router.get('/produnoredirect/:id', async (req, res) => {
+  const { id } = req.params;
+  const produno = await Produno.findById(id);
+  res.render('produno/produnoredirect', {produno});
+});
+
+
+
+router.post("/kitchen", function(req, res){
+  var flrtName = req.body.kitchen;
+
+  if(flrtName!='' ) {
+
+    var flterParameter={ $and:[{ name:flrtName},
+      {$and:[{},{}]}
+      ]
+       
+    }
+    }else{
+      var flterParameter={}
+  }
+  var produno =Produno.find(flterParameter);
+  produno.exec(function(err,data){
+      if(err) throw err;
+      res.render("produno/produno",{produno :data });
+
+        });
+  
+  
+});
+
+
+
+
+
+
+
+
+router.get("/search", function(req, res){
+  var noMatch = null;
+  if(req.query.search) {
+      const regex = new RegExp(escape(req.query.search), 'gi');
+      // Get all campgrounds from DB
+      console.log(req.query.search)
+      Produno.find({title: regex}, function(err, produno){
+         if(err){
+             console.log(err);
+         } else {
+            if(produno.length < 1) {
+                noMatch = "No campgrounds match that query, please try again.";
+            }
+            res.render("produno/produno",{produno, noMatch: noMatch});
+         }
+      });
+
+  } else {
+      // Get all campgrounds from DB
+      Produno.find({}, function(err, produno){
+         if(err){
+             console.log(err);
+         } else {
+            res.render("produno/produno",{produno, noMatch: noMatch});
+         }
+      });
+  }
+});
+
+
+
 
 
 router.get('/produnoindex/:page', async (req, res) => {
