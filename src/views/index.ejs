@@ -186,6 +186,37 @@
 <!-- end of home filler -->
 
 
+<div id="productReviewCollapse" class="collapse in">
+
+  <form action="products_submit.php" method="get" accept-charset="utf-8">
+
+      <input type="checkbox" id="review1" name="prodcut_review[]" />
+      <label for="review1" style="color:#008000"><span></span>
+          <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+      </label><br />
+      <input type="checkbox" id="review2" name="prodcut_review[]" />
+      <label for="review2" style="color:#6f6"><span></span>
+          <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+      </label><br />
+      <input type="checkbox" id="review3" name="prodcut_review[]" />
+      <label for="review3" style="color:#9c9"><span></span>
+          <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+      </label><br />
+      <input type="checkbox" id="review4" name="prodcut_review[]" />
+      <label for="review4" style="color:#f99"><span></span>
+          <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+      </label><br />
+      <input type="checkbox" id="review5" name="prodcut_review[]" />
+      <label for="review5" style="color:#fc9"><span></span>
+          <i class="fa fa-star"></i>
+      </label><br />
+
+
+      <input type="submit" name="submit_brand_search" class="btn btn-red pull-right btn-sm" value="Search">
+      <div class="clearfix"></div>
+  </form>
+</div>
+</div> <!--End Single Sidebar-->
 
 
 <!-- featured section -->
@@ -201,11 +232,14 @@
       </div>
     </div>
     <div class="row">
+     
+
+      <% ofertauno.forEach(function (ofertaun) { %>
       <!-- single product -->
       <div class="col-10 mx-auto col-md-6 col-lg-4">
         <div class="featured-container p-5">
           <img
-            src="img/img-products/product-1.png"
+            src="<%= ofertaun.image %>"
             class="img-fluid"
             alt="product"
           />
@@ -216,147 +250,21 @@
           >
             <i class="fas fa-search"></i>
           </span>
-          <a href="#" class="featured-store-link text-captilaze"
+          <a href="/addtocardofertauno/<%= ofertaun.id %>" class="featured-store-link text-captilaze"
             >add to cart</a
           >
         </div>
         <h6 class="text-capitalize text-center my-2">special product</h6>
         <h6 class="text-center">
           <span class="text-muted old-price mx-2">$200</span>
-          <span>$100</span>
+          <span>$<%= ofertaun.price %></span>
         </h6>
       </div>
       <!-- end single product -->
-      <!-- single product -->
-      <div class="col-10 mx-auto col-md-6 col-lg-4">
-        <div class="featured-container p-5">
-          <img
-            src="img/img-products/product-2.png"
-            class="img-fluid"
-            alt="product"
-          />
-          <span
-            class="featured-search-icon"
-            data-toggle="modal"
-            data-target="#productModal"
-          >
-            <i class="fas fa-search"></i>
-          </span>
-          <a href="#" class="featured-store-link text-captilaze"
-            >add to cart</a
-          >
-        </div>
-        <h6 class="text-capitalize text-center my-2">special product</h6>
-        <h6 class="text-center">
-          <span class="text-muted old-price mx-2">$200</span>
-          <span>$100</span>
-        </h6>
-      </div>
-      <!-- end single product -->
-      <!-- single product -->
-      <div class="col-10 mx-auto col-md-6 col-lg-4">
-        <div class="featured-container p-5">
-          <img
-            src="img/img-products/product-3.png"
-            class="img-fluid"
-            alt="product"
-          />
-          <span
-            class="featured-search-icon"
-            data-toggle="modal"
-            data-target="#productModal"
-          >
-            <i class="fas fa-search"></i>
-          </span>
-          <a href="#" class="featured-store-link text-captilaze"
-            >add to cart</a
-          >
-        </div>
-        <h6 class="text-capitalize text-center my-2">special product</h6>
-        <h6 class="text-center">
-          <span class="text-muted old-price mx-2">$200</span>
-          <span>$100</span>
-        </h6>
-      </div>
-      <!-- end single product -->
-      <!-- single product -->
-      <div class="col-10 mx-auto col-md-6 col-lg-4">
-        <div class="featured-container p-5">
-          <img
-            src="img/img-products/product-4.png"
-            class="img-fluid"
-            alt="product"
-          />
-          <span
-            class="featured-search-icon"
-            data-toggle="modal"
-            data-target="#productModal"
-          >
-            <i class="fas fa-search"></i>
-          </span>
-          <a href="#" class="featured-store-link text-captilaze"
-            >add to cart</a
-          >
-        </div>
-        <h6 class="text-capitalize text-center my-2">special product</h6>
-        <h6 class="text-center">
-          <span class="text-muted old-price mx-2">$200</span>
-          <span>$100</span>
-        </h6>
-      </div>
-      <!-- end single product -->
-      <!-- single product -->
-      <div class="col-10 mx-auto col-md-6 col-lg-4">
-        <div class="featured-container p-5">
-          <img
-            src="img/img-products/product-5.png"
-            class="img-fluid"
-            alt="product"
-          />
-          <span
-            class="featured-search-icon"
-            data-toggle="modal"
-            data-target="#productModal"
-          >
-            <i class="fas fa-search"></i>
-          </span>
-          <a href="#" class="featured-store-link text-captilaze"
-            >add to cart</a
-          >
-        </div>
-        <h6 class="text-capitalize text-center my-2">special product</h6>
-        <h6 class="text-center">
-          <span class="text-muted old-price mx-2">$200</span>
-          <span>$100</span>
-        </h6>
-      </div>
-      <!-- end single product -->
-      <!-- single product -->
-      <div class="col-10 mx-auto col-md-6 col-lg-4">
-        <div class="featured-container p-5">
-          <img
-            src="img/img-products/product-6.png"
-            class="img-fluid"
-            alt="product"
-          />
-          <span
-            class="featured-search-icon"
-            data-toggle="modal"
-            data-target="#productModal"
-          >
-            <i class="fas fa-search"></i>
-          </span>
-          <a href="#" class="featured-store-link text-captilaze"
-            >add to cart</a
-          >
-        </div>
-        <h6 class="text-capitalize text-center my-2">special product</h6>
-        <h6 class="text-center">
-          <span class="text-muted old-price mx-2">$200</span>
-          <span>$100</span>
-        </h6>
-      </div>
-      <!-- end single product -->
+      <% }) %>
+
+
+    
     </div>
   </div>
 </section>

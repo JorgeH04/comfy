@@ -15,7 +15,7 @@
     />
 
     <!-- font awesome -->
-    <link rel="stylesheet" href="css/all.css" />
+    <link rel="stylesheet" href="/css/all.css" />
     <title>Comfy Sloth Recording</title>
     <style></style>
   </head>
@@ -35,7 +35,7 @@
           https://www.iconfinder.com/webalys
         -->
         <a href="/" class="navbar-brand">
-          <img src="img/logo.png" alt="company logo" />
+          <img src="/img/logo.png" alt="company logo" />
         </a>
         <button
           class="navbar-toggler"
@@ -48,11 +48,12 @@
         <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="navbar-nav mx-auto">
             <li class="nav-item mx-2 nav-active">
-                <% if(user) { %>
-              <a href="/" class="nav-link">Home</a>
+                <a href="/" class="nav-link">Home</a>
             </li>
+                <% if(user) { %>
+             
             <li class="nav-item mx-2">
-              <a href="/users/profile" class="nav-link">Perfil</a>
+              <a href="/perfil/1" class="nav-link">Perfil</a>
             </li>
             <li class="nav-item mx-2">
               <a href="/users/logout" class="nav-link">Logout</a>
@@ -74,10 +75,9 @@
         </div>
         <div class="navbar-icons d-none d-lg-flex">
           <!-- single icon -->
-          <div class="navbar-icon mx-2"><i class="fas fa-search"></i></div>
           <!-- end of single icon -->
           <!-- single icon -->
-          <a href="/shopcart/" class="navbar-icon mx-2 navbar-cart-icon">
+          <a href="/shopcart" class="navbar-icon mx-2 navbar-cart-icon">
             <i class="fas fa-shopping-cart"></i>
             <% if(session.cart) { %>
             <div class="cart-items"><%= session.cart.totalQty%></div>
