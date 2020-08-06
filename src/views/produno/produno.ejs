@@ -45,7 +45,7 @@
     </div>
  </div>
  <div class="col-md-12">
-  <input type="submit" class="form-control btn btn-primary" name="submit" placeholder="Filter">
+  <input type="submit" class="btn btn-red pull-right btn-sm" name="submit" placeholder="Filter">
 </div>
 </form>
 
@@ -130,76 +130,72 @@
      
 
 
-
-
-      <div class="col-12">
-        <div class="row">
-              <!-- pagination -->
-              <% if(pages > 0) { %> <!-- show pagination if there is pages -->
-                <nav  class="mx-auto" style="margin-bottom: 50px">
-                  <ul class="pagination">
-                    <!-- FIRST ITEM -->
-                    <% if(current == 1) { %>
-                      <li class="page-item disabled">
-                        <a class="page-link" href="#">First</a>
-                      </li>
-                    <% } else { %>
-                      <li class="page-item">
-                        <a class="page-link" href="/produnoback/1">First</a>
-                      </li>
-                    <% } %>
-                    <!-- ITEMS  -->
-                    <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
-                    <% if(i !== 1) { %>
-                      <li class="page-item disabled">
-                        <a class="page-link" href="#">...</a>
-                      </li>
-                    <% } %>
-                    <% for(; i <= (Number(current) + 4) && i <= pages; i++) { %>
-                      <% if(i == current) { %>
-                        <li class="page-item active">
-                          <a class="page-link" href="<%= i %>">
-                            <%= i %>
-                          </a>
-                        </li>
-                      <% } else { %>
-                        <li class="page-item">
-                          <a class="page-link" href="/produnoback/<%= i %>">
-                            <%= i %>
-                          </a>
-                        </li>
-                      <% } %>
-                      <% if (i == Number(current) + 4 && i < pages) { %>
-                         <li class="page-item disabled">
-                           <a class="page-link" href="#">...</a>
-                         </li>
-                      <% } %>
-                    <% } %>
-                    <!-- LAST ITEM -->
-                    <% if(current == pages) { %>
-                      <li class="page-item disabled">
-                        <a class="page-link" href="#">
-                          Last
-                        </a>
-                      </li>
-                    <% } else { %>
-                      <li class="page-item">
-                        <a class="page-link" href="/produnoback/<%= pages %>">
-                          Last
-                        </a>
-                      </li>
-                    <% } %>
-                  </ul>
-                </nav>
+<div class="col-12">
+  <div class="row">
+        <!-- pagination -->
+        <% if(pages > 0) { %> <!-- show pagination if there is pages -->
+          <nav  class="mx-auto" style="margin-bottom: 50px">
+            <ul class="pagination">
+              <!-- FIRST ITEM -->
+              <% if(current == 1) { %>
+                <li class="page-item disabled">
+                  <a class="page-link" href="#">First</a>
+                </li>
+              <% } else { %>
+                <li class="page-item">
+                  <a class="page-link" href="/produnoback/1">First</a>
+                </li>
               <% } %>
-            </div>
-          </div>
-  
-
-        </main>
-        <!-- Main Content -->
+              <!-- ITEMS  -->
+              <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
+              <% if(i !== 1) { %>
+                <li class="page-item disabled">
+                  <a class="page-link" href="#">...</a>
+                </li>
+              <% } %>
+              <% for(; i <= (Number(current) + 4) && i <= pages; i++) { %>
+                <% if(i == current) { %>
+                  <li class="page-item active">
+                    <a class="page-link" href="<%= i %>">
+                      <%= i %>
+                    </a>
+                  </li>
+                <% } else { %>
+                  <li class="page-item">
+                    <a class="page-link" href="/produnoback/<%= i %>">
+                      <%= i %>
+                    </a>
+                  </li>
+                <% } %>
+                <% if (i == Number(current) + 4 && i < pages) { %>
+                   <li class="page-item disabled">
+                     <a class="page-link" href="#">...</a>
+                   </li>
+                <% } %>
+              <% } %>
+              <!-- LAST ITEM -->
+              <% if(current == pages) { %>
+                <li class="page-item disabled">
+                  <a class="page-link" href="#">
+                    Last
+                  </a>
+                </li>
+              <% } else { %>
+                <li class="page-item">
+                  <a class="page-link" href="/produnoback/<%= pages %>">
+                    Last
+                  </a>
+                </li>
+              <% } %>
+            </ul>
+          </nav>
+        <% } %>
       </div>
-      
+    </div>
+  </main>
+  <!-- Main Content -->
+</div>
+
 
 
 

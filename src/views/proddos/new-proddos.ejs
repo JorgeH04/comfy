@@ -10,26 +10,33 @@
     <div class="card-body">
       <form action="/proddos/new-proddos" method="POST">
         <div class="form-group">
-          <input type="text" name="imagePath" class="form-control" placeholder="image" autofocus/>
+          <input type="text" name="name" class="form-control" placeholder="name" autofocus/>
         </div>
        <div class="form-group">
-          <input type="text" name="product" class="form-control" placeholder="product" autofocus/>
+          <input type="text" name="title" class="form-control" placeholder="title" autofocus/>
         </div>
         <div class="form-group">
-            <input type="text" name="talle" class="form-control" placeholder="talle" autofocus/>
+            <input type="text" name="image" class="form-control" placeholder="imagen 1" autofocus/>
+          </div>
+          <div class="form-group">
+            <input type="text" name="imagedos" class="form-control" placeholder="imagen 2" autofocus/>
+          </div>
+          <div class="form-group">
+            <input type="text" name="imagetres" class="form-control" placeholder="imagen 3" autofocus/>
+          </div>
+          <div class="form-group">
+              <input type="text" name="color" class="form-control" placeholder="color" autofocus/>
+          </div>
+          <div class="form-group">
+                <input type="text" name="colorstock" class="form-control" placeholder="colorstock" autofocus/>
+          </div>
+          <div class="form-group">
+            <input type="text" name="description" class="form-control" placeholder="descripcion" autofocus/>
           </div>
                  <div class="form-group">
-            <input type="text" name="color" class="form-control" placeholder="color" autofocus/>
+            <input type="text" name="price" class="form-control" placeholder="precio" autofocus/>
           </div>
-                 <div class="form-group">
-            <input type="text" name="tallestock" class="form-control" placeholder="tallestock" autofocus/>
-          </div>
-                 <div class="form-group">
-            <input type="text" name="colorstock" class="form-control" placeholder="colorstock" autofocus/>
-          </div>
-        <div class="form-group">
-          <input type="number" name="price" class="form-control" placeholder="price" autofocus/>
-        </div>
+                 
         <div class="form-group">
           <button class="btn btn-primary btn-block" type="submit">
             Save
@@ -41,23 +48,25 @@
 </div>
 
 
-
-
 <div class="row mt-5">
     <% proddos.forEach(function (proddo) { %>
       <div class="col-md-3 ">
        <div class="card"> 
           <a href="/proddosbackend/<%= proddo.id %>">
-         <img class="card-img-top img-fluid" alt="img1" src="<%= proddo.imagePath %>">
+         <img class="card-img-top img-fluid" alt="img1" src="<%= proddo.image%>">
           </a>
           <div class="card-body">
-        <div class="card-heading"><%= proddo.product %></div>
+        <div class="card-heading"><%= proddo.title %></div>
         <h4> $<%= proddo.price %>  </h4>
-        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit neque, mollitia dolorem. </p>
         <a class="btn btn-pink text-light"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart</a> </div>
-        <a class="btn btn-danger" href="/proddos/delete/<%= proddo.id %>">
-          Eliminar
-      </a>
+        <div class="card-body">
+          <a class="btn btn-danger" href="/proddos/delete/<%= proddo.id %>">
+            Eliminar
+        </a>
+        <a class="btn btn-primary" href="/proddos/edit/<%= proddo.id %>">
+            Editar
+        </a>
+        </div> 
         </div>
   </div>
   <% }) %>
@@ -67,7 +76,77 @@
      
 </div>
 </div>
+</div>
 
+      
+
+<div class="col-12">
+  <div class="row">
+        <!-- pagination -->
+        <% if(pages > 0) { %> <!-- show pagination if there is pages -->
+          <nav  class="mx-auto" style="margin-bottom: 50px">
+            <ul class="pagination">
+              <!-- FIRST ITEM -->
+              <% if(current == 1) { %>
+                <li class="page-item disabled">
+                  <a class="page-link" href="#">First</a>
+                </li>
+              <% } else { %>
+                <li class="page-item">
+                  <a class="page-link" href="/proddosback/1">First</a>
+                </li>
+              <% } %>
+              <!-- ITEMS  -->
+              <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
+              <% if(i !== 1) { %>
+                <li class="page-item disabled">
+                  <a class="page-link" href="#">...</a>
+                </li>
+              <% } %>
+              <% for(; i <= (Number(current) + 4) && i <= pages; i++) { %>
+                <% if(i == current) { %>
+                  <li class="page-item active">
+                    <a class="page-link" href="<%= i %>">
+                      <%= i %>
+                    </a>
+                  </li>
+                <% } else { %>
+                  <li class="page-item">
+                    <a class="page-link" href="/proddosback/<%= i %>">
+                      <%= i %>
+                    </a>
+                  </li>
+                <% } %>
+                <% if (i == Number(current) + 4 && i < pages) { %>
+                   <li class="page-item disabled">
+                     <a class="page-link" href="#">...</a>
+                   </li>
+                <% } %>
+              <% } %>
+              <!-- LAST ITEM -->
+              <% if(current == pages) { %>
+                <li class="page-item disabled">
+                  <a class="page-link" href="#">
+                    Last
+                  </a>
+                </li>
+              <% } else { %>
+                <li class="page-item">
+                  <a class="page-link" href="/proddosback/<%= pages %>">
+                    Last
+                  </a>
+                </li>
+              <% } %>
+            </ul>
+          </nav>
+        <% } %>
+      </div>
+    </div>
+
+
+  </main>
+  <!-- Main Content -->
+</div>
 
 
 

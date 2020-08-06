@@ -6,13 +6,12 @@ const mercadopago = require("mercadopago");
 // Models
 const Produno = require('../models/produno');
 const Cart = require('../models/cart');
-//const Order = require('../models/Order');
 
 // Helpers
 const { isAuthenticated } = require('../helpers/auth');
 
 
-///////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////back/////////////////////////////////////////////////////
 
 
 router.post('/produno/new-produno',  async (req, res) => {
@@ -51,105 +50,6 @@ router.get('/produnoredirect/:id', async (req, res) => {
   res.render('produno/produnoredirect', {produno});
 });
 
-
-
-router.post("/kitchen", function(req, res){
-  var flrtName = req.body.kitchen;
-
-  if(flrtName!='' ) {
-
-    var flterParameter={ $and:[{ name:flrtName},
-      {$and:[{},{}]}
-      ]
-       
-    }
-    }else{
-      var flterParameter={}
-  }
-  var produno =Produno.find(flterParameter);
-  produno.exec(function(err,data){
-      if(err) throw err;
-      res.render("produno/produno",{produno :data });
-
-        });
-  
-  
-});
-
-
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////
-
-router.get('/produnoindex/:page', async (req, res) => {
-
-
-  let perPage = 8;
-  let page = req.params.page || 1;
-
-  Produno 
-  .find({}) // finding all documents
-  .sort({ _id: -1 })
-  .skip((perPage * page) - perPage) // in the first page the value of the skip is 0
-  .limit(perPage) // output just 9 items
-  .exec((err, produno) => {
-    Produno.countDocuments((err, count) => { // count to calculate the number of pages
-      if (err) return next(err);
-      res.render('produno/produno', {
-        produno,
-        current: page,
-        pages: Math.ceil(count / perPage)
-      });
-    });
-  });
-});
-
-
-
-
-router.get("/search", function(req, res){
-  let perPage = 8;
-  let page = req.params.page || 1;
-
-  var noMatch = null;
-  if(req.query.search) {
-      const regex = new RegExp(escape(req.query.search), 'gi');
-      // Get all campgrounds from DB
-      console.log(req.query.search)
-      Produno
-      // finding all documents
-      .find({title: regex}) 
-      .sort({ _id: -1 })
-      .skip((perPage * page) - perPage) // in the first page the value of the skip is 0
-      .limit(perPage) // output just 9 items
-      .exec((err, produno) => {
-       Produno.countDocuments((err, count) => {
-        if (err) return next(err);
-            res.render("produno/produno",{
-              produno, 
-              current: page,
-              pages: Math.ceil(count / perPage)
-            });
-          });
-        });
-  } else {
-      // Get all campgrounds from DB
-      Produno.find({}, function(err, produno){
-         if(err){
-             console.log(err);
-         } else {
-            res.render("produno/produno",{
-              produno,
-              current: page,
-              pages: Math.ceil(count / perPage)
-              });
-         }
-      });
-  }
-});
-
-
-/////////////////////////////////////////////////////////////////////////////////////////////
 
 
 router.get('/produnoback/:page', async (req, res) => {
@@ -223,6 +123,136 @@ router.get('/produnobackend/:id', async (req, res) => {
   const produno = await Produno.findById(id);
    res.render('produno/produnobackend', {produno});
 });
+
+
+
+
+
+
+
+
+/////////////////////////////////////front///////////////////////////////////////////////////////////
+
+
+
+//router.get('/produnoindex', async (req, res) => {
+//  const produno = await Produno.find();
+ // res.render('produno/produno', { produno });
+//});
+
+router.get('/produnoindex/:page', async (req, res) => {
+
+
+  let perPage = 8;
+  let page = req.params.page || 1;
+
+  Produno 
+  .find({}) // finding all documents
+  .sort({ _id: -1 })
+  .skip((perPage * page) - perPage) // in the first page the value of the skip is 0
+  .limit(perPage) // output just 9 items
+  .exec((err, produno) => {
+    Produno.countDocuments((err, count) => { // count to calculate the number of pages
+      if (err) return next(err);
+      res.render('produno/produno', {
+        produno,
+        current: page,
+        pages: Math.ceil(count / perPage)
+      });
+    });
+  });
+});
+
+
+
+router.get("/search", function(req, res){
+  let perPage = 8;
+  let page = req.params.page || 1;
+
+  var noMatch = null;
+  if(req.query.search) {
+      const regex = new RegExp(escape(req.query.search), 'gi');
+      // Get all campgrounds from DB
+      console.log(req.query.search)
+      Produno
+      // finding all documents
+      .find({title: regex}) 
+      .sort({ _id: -1 })
+      .skip((perPage * page) - perPage) // in the first page the value of the skip is 0
+      .limit(perPage) // output just 9 items
+      .exec((err, produno) => {
+       Produno.countDocuments((err, count) => {
+        if (err) return next(err);
+            res.render("produno/produno",{
+              produno, 
+              current: page,
+              pages: Math.ceil(count / perPage)
+            });
+          });
+        });
+  } else {
+      // Get all campgrounds from DB
+      Produno.find({}, function(err, produno){
+         if(err){
+             console.log(err);
+         } else {
+            res.render("produno/produno",{
+              produno,
+              current: page,
+              pages: Math.ceil(count / perPage)
+              });
+         }
+      });
+  }
+});
+
+
+
+
+
+
+router.post("/kitchen", function(req, res){
+
+  let perPage = 8;
+  let page = req.params.page || 1;
+
+  var flrtName = req.body.kitchen;
+
+  if(flrtName!='' ) {
+
+    var flterParameter={ $and:[{ name:flrtName},
+      {$and:[{},{}]}
+      ]
+       
+    }
+    }else{
+      var flterParameter={}
+  }
+  var produno = Produno.find(flterParameter);
+  produno
+  //.find( flterParameter) 
+  .sort({ _id: -1 })
+  .skip((perPage * page) - perPage) // in the first page the value of the skip is 0
+  .limit(perPage) // output just 9 items
+  .exec((err, data) => {
+  Produno.countDocuments((err, count) => {  
+  //.exec(function(err,data){
+      if(err) throw err;
+      res.render("produno/produno",
+      {
+        produno: data, 
+        current: page,
+        pages: Math.ceil(count / perPage)
+      
+      });
+    });
+  });
+});
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+
 
 
 //////////////////////////////////////////////////////////////////////////////////////////7

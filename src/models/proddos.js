@@ -2,19 +2,19 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const NoteSchema = new Schema({
-  imagePath: {
+  name: {
     type: String,
     required: true
   },
-  product: {
+  title: {
     type: String,
     required: true
   },
+  image: String,
+  imagedos: String,
+  imagetres: String,
+  description: String,
   color: {
-    type: String,
-    required: true
-  },
-  talle: {
     type: String,
     required: true
   },
@@ -22,10 +22,7 @@ const NoteSchema = new Schema({
     type: String,
     required: true
   },
-  tallestock: {
-    type: String,
-    required: true
-  }, 
+
   date: {
     type: Date,
     default: Date.now
